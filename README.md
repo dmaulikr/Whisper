@@ -1,4 +1,5 @@
 # MCOneToOne #
+## V 0.1 ##
 
 A singleton / passive-connection / one-to-one / thread-aware / data sending relationship built on top of Multipeer Connectivity written in Objective-C. 
 
@@ -40,4 +41,4 @@ _connectedUsers = [NSMutableSet set];
 
 ### Version History: ###
 **0.1**
-First commit, tested with 3 devices only. 
+First commit, tested with 3 devices only.
