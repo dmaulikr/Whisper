@@ -24,7 +24,7 @@ MCOneToOneConnectionStatus;
 @class MCContent;
 
 @protocol MCOneToOneDelegate <NSObject>
-
+@required
 -(void)didChangeConnectionStatusForPeer:(MCPeerID*)peer;
 -(void)didReceiveContent:(MCContent*)content fromPeer:(MCPeerID*)peer;
 
@@ -48,7 +48,7 @@ MCOneToOneConnectionStatus;
 
 + (NSString*)stringForConnectionStatus:(MCOneToOneConnectionStatus)status;
 
-@property (nonatomic, readonly) NSArray *connectedPeers; // an array of MCPeerIDs
+@property (nonatomic, readonly) NSMutableArray *connectedPeers; // an array of MCPeerIDs
 @property (nonatomic) BOOL gracefulBackgrounding;
 @property (nonatomic, readonly) NSString *serviceKey;
 @property (nonatomic) BOOL forceMainThread;

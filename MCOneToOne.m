@@ -32,7 +32,7 @@ const float browseTimeout = 5.0f;
 @property (nonatomic, strong) MCPeerID *myPeerID;
 @property (nonatomic, strong) MCNearbyServiceAdvertiser *advertiser;
 @property (nonatomic, strong) MCNearbyServiceBrowser *browser;
-@property (nonatomic, readwrite) NSArray *connectedPeers; // an array of MCPeerIDs
+@property (nonatomic, readwrite) NSMutableArray *connectedPeers; // an array of MCPeerIDs
 @property (nonatomic, readwrite) NSString *serviceKey;
 @end
 
@@ -82,6 +82,7 @@ const float browseTimeout = 5.0f;
         sessions    = [NSMutableDictionary dictionary];
         status      = [NSMutableDictionary dictionary];
         peers       = [NSMutableSet set];
+        _connectedPeers = [NSMutableArray array];
         
         _forceMainThread = TRUE;
         
@@ -255,6 +256,9 @@ const float browseTimeout = 5.0f;
 -(void)modConnectionStatus:(MCOneToOneConnectionStatus)s forPeer:(MCPeerID*)peer
 {
     [status setObject:[NSNumber numberWithInteger:s] forKey:peer];
+    
+    if (s == ConnectionStatusConnected) [_connectedPeers addObject:peer];
+    else if ([_connectedPeers containsObject:peer]) [_connectedPeers removeObject:peer];
     
     if ([self.delegate respondsToSelector:@selector(didChangeConnectionStatusForPeer:)])
     {
