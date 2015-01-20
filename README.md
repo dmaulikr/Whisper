@@ -19,7 +19,7 @@ A singleton / passive-connection / one-to-one / thread-aware / data sending rela
     // Determine what to do for different statuses
     if (status == ConnectionStatusConnected) {
         // send NSObject subtype & assign a content code so the receiver knows what they are receiving
-        [oto sendPeer:peer content:[MCContent contentCode:100 withContent:@"Hey!"]];
+        [[MCOneToOne connection] sendPeer:peer content:[MCContent contentCode:100 withContent:@"Hey!"]];
     }
 }
 
