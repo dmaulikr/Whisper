@@ -10,6 +10,8 @@ A singleton / passive-connection / one-to-one / thread-aware / data sending rela
 [[MCOneToOne connection] setDelegate:self];
 [[MCOneToOne connection] startAndConnectWithService:@"mc-hammer"];
 
+_connectedUsers = [NSMutableSet set];
+
 #pragma mark - MCOneToOne Delegate:
 // It's your responsibility to track your users, MCOneToOne will build a one to one connection passively upon any discovery or invitation
 -(void)didChangeConnectionStatusForPeer:(MCPeerID*)peer {
@@ -20,6 +22,10 @@ A singleton / passive-connection / one-to-one / thread-aware / data sending rela
     if (status == ConnectionStatusConnected) {
         // send NSObject subtype & assign a content code so the receiver knows what they are receiving
         [[MCOneToOne connection] sendPeer:peer content:[MCContent contentCode:100 withContent:@"Hey!"]];
+        [_connectedUsers addObject:peer];
+    }
+    else {
+        if ([_connectedUsers containsObject:peer]) [_connectedUsers removeObject:peer];
     }
 }
 
