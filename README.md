@@ -37,3 +37,7 @@ _connectedUsers = [NSMutableSet set];
     }
 }
 ```
+
+### Version History: ###
+**0.1**
+First commit, tested with 3 devices only. 
