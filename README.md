@@ -5,8 +5,7 @@ A singleton / passive-connection / one-to-one / thread-aware / data sending rela
 
 ## Sample Usage ##
 
-```
-#!objective-c
+```objective-c
 // Establishes singleton, assigns delegate and begins advertising and broadcasting service with string unique to your app.  
 [[MCOneToOne connection] setDelegate:self];
 [[MCOneToOne connection] startAndConnectWithService:@"mc-hammer"];
@@ -38,6 +37,15 @@ _connectedUsers = [NSMutableSet set];
     }
 }
 ```
+
+Additionally, I recommend you call every so often:
+
+```objective-c
+[[MCOneToOne connection] radar];
+```
+
+This will scan for new users for 15 seconds. This can be triggered either after user action, an NSTimer or another method of your choice.
+
 
 ### Version History: ###
 **0.1**
