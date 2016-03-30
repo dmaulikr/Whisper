@@ -1,4 +1,4 @@
-# MCOneToOne #
+# Whisper #
 ## V 0.1 ##
 
 A singleton / passive-connection / one-to-one / thread-aware / data sending relationship built on top of Multipeer Connectivity written in Objective-C. 
